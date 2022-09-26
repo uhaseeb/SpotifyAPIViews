@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block css_styling %}
+{% endblock %}
+
+{% block content %}
+    <h2>Login Here !!</h2>
+    {% for message in messages %}
+        <h2 style="color:red">{{message}}</h2>
+    {% endfor %}
+<form method="post" action="login_auth">
+    {% csrf_token %}
+    {% for field in form %}
+    {{field.label}}
+    {{field}}
+    <br><br>
+    {% endfor %}
+    <input type="submit">
+</form>
+{% endblock %}

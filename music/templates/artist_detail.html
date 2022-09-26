@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Artist Detail{% endblock %}
+
+{% block css_styling %}
+{% endblock %}
+
+{% block content %}
+    <h1>Artist: {{artist.name}}</h1>
+      <h2>All Albums</h2>
+    <ul>
+        {% for album in all_albums %}
+        <a href="{% url 'album_detail' album.id %}"><li><h2>{{album.name}}</h2></li></a>
+        {% endfor %}
+    </ul>
+{% endblock %}

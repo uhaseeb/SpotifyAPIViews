@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    User Detail
+{% endblock %}
+
+{% block css_styling %}
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome {{user.username}} </h1>
+    <h2>Email: {{user.email}}</h2>
+    <h2>Gender: {{user.gender}}</h2>
+    <h2>My Playlists</h2>
+    <h4><a href="{% url 'create_playlist' %}">Create New</a></h4>
+    <ul>
+        {% for playlist in all_playlists %}
+            <li><a href="{% url 'detail_playlist' playlist.name %}">{{playlist.name}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

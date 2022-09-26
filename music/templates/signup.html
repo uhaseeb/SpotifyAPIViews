@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block css_styling %}
+{% endblock %}
+
+{% block content %}
+    <h2>Signup Here here!</h2>
+    <form method="post" action="create_user">
+        {% csrf_token %}
+        {% for message in messages %}
+        <h2 style="color:red"><i>{{message}}</i></h2>
+        <br>
+        {% endfor %}
+        {% for field in form %}
+        {{field.label}}
+        {{field}}
+        <br>
+        <br>
+        {% endfor %}
+        <input type="submit">
+    </form>
+{% endblock %}

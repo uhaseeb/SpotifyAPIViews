@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Song Detail
+{% endblock %}
+
+{% block css_styling %}
+
+{% endblock %}
+
+{% block content %}
+    <h1>{{track.name}}</h1>
+        <form method="post" action="{% url 'song_detail' track.id %}">
+            {% csrf_token %}
+            <input type="hidden" value="{{track.id}}" name="song_id">
+            <select name="selected_playlist">
+                {% for playlist in all_playlist %}
+                <option value='{{playlist.id}}'>{{playlist.name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Add">
+        </form>
+        <form method="post" action="{% url 'favorite_track' %}">
+            {% csrf_token %}
+            <input type="text" value="{{track.id}}" name="track_id">
+            {% if is_favorite %}
+            <input type="submit" value="Remove from favorites">
+            {% else %}
+            <input type="submit" value="Add to favorites">
+            {% endif %}
+        </form>
+    <h4>Duration: {{track.duration}}</h4>
+    <h2>Artist: {{track.artist}}</h2>
+    <h3>{{track.song}}</h3>
+    <audio controls>
+        <source src="{{track.song.url}}" type="audio/ogg">
+        <source src="{{track.song.url}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+{% endblock %}
